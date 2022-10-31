@@ -1,0 +1,31 @@
+import React from 'react';
+import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import ProductsContextProvider from "./Global/ProductsContext"
+import CartContextProvider from "./Global/CartContext";
+import Products from "./components/Products";
+import Cart from "./components/Cart";
+import NotFound from "./components/NotFound";
+
+
+function App() {
+  return (
+    <div>
+      <ProductsContextProvider>
+        <CartContextProvider>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Products />} />
+              <Route path="/cart" element={<Cart />} />
+              <Route element={<NotFound />} />
+            </Routes>
+          </BrowserRouter>
+        </CartContextProvider>
+      </ProductsContextProvider>
+    </div>
+  );
+}
+
+export default App;
